@@ -1,0 +1,21 @@
+{
+  "name": "automationtraining",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FroudeDescartes/AutomationTraining.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FroudeDescartes/AutomationTraining/issues"
+  },
+  "homepage": "https://github.com/FroudeDescartes/AutomationTraining#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.31.2"
+  }
+}
