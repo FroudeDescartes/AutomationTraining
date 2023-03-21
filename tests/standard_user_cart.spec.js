@@ -1,7 +1,7 @@
 // @ts-check
 import { login } from './login';
 import { logout } from './logout';
-import { serialNumberOfItem, stickyAddToCart } from './cart_manipulation';
+import { /*serialNumberOfItem*/ stickyAddToCart, removeFromCart } from './cart_manipulation';
 import { cartPositive } from './cart_positive';
 import { cartNegative } from './cart_negative';
 
@@ -14,7 +14,8 @@ test.describe("Navigation", () => {
         });
         test("Cart", async ({ page }) => {
             await stickyAddToCart(page)
-            await serialNumberOfItem(page)
+            await removeFromCart(page)
+            //await serialNumberOfItem(page)
             await cartPositive(page)
             await cartNegative(page)
 
