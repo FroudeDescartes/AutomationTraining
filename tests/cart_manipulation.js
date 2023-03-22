@@ -7,34 +7,35 @@ async function stickyAddToCart(page) {
     await page.locator("#add-to-cart-sauce-labs-fleece-jacket").click()
     await page.locator("#add-to-cart-sauce-labs-onesie").click()
     await page.locator('[data-test="add-to-cart-test\\.allthethings\\(\\)-t-shirt-\\(red\\)"]').click();
+    let addedToCart = page.locator(".shopping_cart_badge")
+    await expect(addedToCart).toContainText("6")
 }
 
-//Before function serialNumberOfItem, cart needs to be empty, so:
+
 async function removeFromCart(page) {
     await page.locator("#shopping_cart_container").click()
-    await page.locator('#remove-sauce-labs-bike-light').click()
-    await page.locator('#remove-sauce-labs-backpack').click()
-    await page.locator('#remove-sauce-labs-bolt-t-shirt').click()
-    await page.locator('#remove-sauce-labs-fleece-jacket').click()
-    await page.locator('[data-test="remove-test\\.allthethings\\(\\)-t-shirt-\\(red\\)"]').click()
-    await page.locator('#remove-sauce-labs-onesie').click()
+
+    let cartItemCount = await page.locator(".cart_item").count()
+    for (let i = cartItemCount - 1; i >= 0; i--) {
+        await page.locator(".cart_item button").nth(i).click()
+    }
+    await page.locator("#continue-shopping").click()
 }
 
 
-/*async function serialNumberOfItem(page) {
-    await page.locator(".btn btn_primary btn_small btn_inventory").nth("i").click()
-    let item = await page.locator(".btn btn_primary btn_small btn_inventory").nth("i")
-    for (let i = 0; i < item.length; i++) {
-
+async function allItemsToCart(page) {
+    let itemCount = await page.locator(".inventory_item").count()
+    for (let i = 0; i < itemCount; i++) {
+        await page.locator(".inventory_item button").nth(i).click()
     }
-
-}*/
-
+}
 
 
-export { stickyAddToCart, removeFromCart, /*serialNumberOfItem*/ }
+async function randomItem(page) {
+    let itemCount = await page.locator(".inventory_item").count()
+    let randomItemNumber = Math.floor(Math.random() * itemCount)
+    await page.locator(".inventory_item button").nth(randomItemNumber).click()
+}
 
-//napraviti fju koja ubacuje element u korpu po rednom br elementa koristeci .nth()
-//napraviti fju koja ubacuje proizvod u korpu po imenu
-//napraviti fju koja ubacuje random proizvod u korpu
-//sve u ovom fajlu
+
+export { stickyAddToCart, removeFromCart, allItemsToCart, randomItem }
