@@ -1,7 +1,7 @@
 // @ts-check
 import { login } from './login';
 import { logout } from './logout';
-import { /*serialNumberOfItem*/ stickyAddToCart, removeFromCart } from './cart_manipulation';
+import { stickyAddToCart, removeFromCart, allItemsToCart, randomItem } from './cart_manipulation';
 import { cartPositive } from './cart_positive';
 import { cartNegative } from './cart_negative';
 
@@ -13,12 +13,14 @@ test.describe("Navigation", () => {
                 await login(page, "standard_user")
         });
         test("Cart", async ({ page }) => {
-            await stickyAddToCart(page)
-            await removeFromCart(page)
-            //await serialNumberOfItem(page)
-            await cartPositive(page)
-            await cartNegative(page)
-
-            await logout(page)
+                await stickyAddToCart(page)
+                await removeFromCart(page)
+                await allItemsToCart(page)
+                await removeFromCart(page)
+                await randomItem(page)
+                await cartPositive(page,"Pera", "Peric", "11000")
+                await cartNegative(page)
+                
+                await logout(page)
         });
 });

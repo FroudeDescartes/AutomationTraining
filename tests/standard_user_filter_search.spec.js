@@ -18,7 +18,6 @@ test.describe("Navigation", () => {
                 let HomePagePdpList = page.locator("div.inventory_list")
                 await expect(HomePageTextVisible).toBeVisible()
                 await expect(HomePagePdpList).toBeVisible()
-                await page.locator('[data-test="product_sort_container"]').selectOption('lohi');
                 await filterSearchZToA(page)
                 await filterSearchLoHi(page)
                 await filterSearchHiLo(page)
