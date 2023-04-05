@@ -11,6 +11,7 @@ test.describe("Navigation", () => {
         });
         test("Cart", async ({ page }) => {
                 await allItemsToCart(page)
+                
                 await removeFromCart(page)
             
                 await logout(page)
