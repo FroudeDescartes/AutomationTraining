@@ -5,6 +5,7 @@ import { filterSearchZToA } from './filter_search_z_to_a';
 import { filterSearchAToZ } from './filter_search_a_to_z';
 import { login } from './login';
 import { logout } from './logout';
+import { homePage } from './home_page';
 
 const { test, expect } = require('@playwright/test');
 test.describe("Navigation", () => {
@@ -14,10 +15,7 @@ test.describe("Navigation", () => {
                 await login(page, "standard_user")
         });
         test("Page environment", async ({ page }) => {
-                let HomePageTextVisible = page.locator("div.app_logo", { hasText: /.*Swag Labs*./ })
-                let HomePagePdpList = page.locator("div.inventory_list")
-                await expect(HomePageTextVisible).toBeVisible()
-                await expect(HomePagePdpList).toBeVisible()
+                await homePage(page)
                 await filterSearchZToA(page)
                 await filterSearchLoHi(page)
                 await filterSearchHiLo(page)
